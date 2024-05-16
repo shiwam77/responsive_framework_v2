@@ -44,10 +44,10 @@ class ResponsiveScaleRoot extends StatelessWidget {
   final List<ScaleInBetween> breakpoints;
 
   const ResponsiveScaleRoot({
-    Key? key,
+    super.key,
     required this.child,
     required this.breakpoints,
-  }) : super(key: key);
+  });
 
   @override
   // Builds the widget tree based on the given context and constraints.

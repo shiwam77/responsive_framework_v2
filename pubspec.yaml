@@ -1,8 +1,10 @@
 name: responsive_framework_v2
-description: "A new Flutter project."
+description: "Responsive_framework_v2 simplifies responsive design in Flutter applications by providing a set of extensions and widgets for dynamic layout adjustments."
+homepage: https://github.com/shiwam77/responsive_framework_v2
+
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+#publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
