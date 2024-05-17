@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:responsive_framework_v2/src/chore/break_point_provider.dart';
+import 'package:responsive_framework_v2/src/model/break_point.model.dart';
 
 extension ResponsiveOnBreakPoint on BuildContext {
   T responsive<T>({
@@ -11,20 +11,20 @@ extension ResponsiveOnBreakPoint on BuildContext {
     T? md,
     T? lg,
     T? xl,
+    ResponsiveConfig? overrideConfig,
   }) {
     debugPrint(MediaQuery.of(this).size.width.toString());
 
     FlutterView? view = View.maybeOf(this);
     final screenWidth = view!.physicalSize.width;
-    final provider = ResponsiveConfigProvider.of(this);
-    final config = provider?.config;
+    final config = overrideConfig ?? ResponsiveConfig.instance;
 
     final Map<num, T> deviceBreakpoints = {
-      if (xs != null) config!.xs: xs,
-      if (sm != null) config!.sm: sm,
-      if (md != null) config!.md: md,
-      if (lg != null) config!.lg: lg,
-      if (xl != null) config!.xl: xl,
+      if (xs != null) config.xs!: xs,
+      if (sm != null) config.sm!: sm,
+      if (md != null) config.md!: md,
+      if (lg != null) config.lg!: lg,
+      if (xl != null) config.xl!: xl,
     };
 
     final mergedBreakpoints = {...deviceBreakpoints, ...breakpoints ?? {}};

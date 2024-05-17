@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework_v2/src/chore/break_point_provider.dart';
 import 'package:responsive_framework_v2/src/extension/context_extension.dart';
 import 'package:responsive_framework_v2/src/model/break_point.model.dart';
 
@@ -7,7 +6,7 @@ import 'src/chore/responsive_scale.dart';
 import 'src/model/scale_in_between.model.dart';
 
 void main() {
-  final globalBreakpointConfig = BreakpointConfig<double>(
+  BreakpointConfig<double>(
     xs: 360,
     sm: 640,
     md: 768,
@@ -16,10 +15,7 @@ void main() {
   );
 
   runApp(
-    ResponsiveConfigProvider(
-      config: globalBreakpointConfig,
-      child: const MainApp(),
-    ),
+    const MainApp(),
   );
 }
 
@@ -28,6 +24,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final overrideConfig = ResponsiveConfig(
+      xs: 320,
+      sm: 480,
+      md: 640,
+      lg: 800,
+      xl: 960,
+    );
     return MaterialApp(
       home: Scaffold(
         body: ResponsiveScaleRoot(
@@ -117,6 +120,13 @@ class MainApp extends StatelessWidget {
                       // md: Text('md'),
                       // lg: Text('lg'),
                       // xl: Text('xl'),
+                    ),
+                    context.responsive(
+                      sm: Text('sm over'),
+                      overrideConfig: overrideConfig,
+                      // md: Text('md over'),
+                      // lg: Text('lg over'),
+                      // xl: Text('xl over'),
                     ),
                     context.showOnScreenBreakPoint(
                         breakpoint: 600, widget: Text('showOnScreenWidth 600')),

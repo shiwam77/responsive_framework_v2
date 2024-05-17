@@ -8,6 +8,21 @@ the ResponsiveScaleRoot widget and the ScaleInBetween class.
 * Usage Example:
 
 ```
+void main() {
+  BreakpointConfig<double>(
+    xs: 360,
+    sm: 640,
+    md: 768,
+    lg: 1024,
+    xl: 1280,
+  );
+
+  runApp(
+    const MainApp(),
+  );
+}
+
+
 ResponsiveScaleRoot(
   breakpoints: [
     // Define breakpoints for scaling UI between specific screen widths
