@@ -112,6 +112,8 @@ class MainApp extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
+                    // responsive is used to display different content based on screen width && using breakpoints config from global instance
+
                     context.responsive(
                       breakpoints: {
                         600: const Text("Small"),
@@ -125,6 +127,8 @@ class MainApp extends StatelessWidget {
                       // lg: Text('lg'),
                       // xl: Text('xl'),
                     ),
+                   //overrideConfig is used to override the default breakpoints
+
                     context.responsive(
                       sm: Text('sm over'),
                       md: Text('md over'),
