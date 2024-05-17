@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.0.0+2
+* Example app 
+
+
+
 ### 1.0.0+1
 * Responsive Scaling: UI elements are scaled dynamically based on defined breakpoints.
 * Breakpoint Definition: Breakpoints are defined using the ScaleInBetween class,

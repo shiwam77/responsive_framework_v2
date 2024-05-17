@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework_v2/src/extension/context_extension.dart';
-import 'package:responsive_framework_v2/src/model/break_point.model.dart';
-
-import 'src/chore/responsive_scale.dart';
-import 'src/model/scale_in_between.model.dart';
+import 'package:responsive_framework_v2/src/responsive_framework_v2.dart';
 
 void main() {
   BreakpointConfig<double>(
