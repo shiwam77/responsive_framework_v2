@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:responsive_framework_v2/src/model/break_point.model.dart';
 
@@ -15,8 +13,7 @@ extension ResponsiveOnBreakPoint on BuildContext {
   }) {
     debugPrint(MediaQuery.of(this).size.width.toString());
 
-    FlutterView? view = View.maybeOf(this);
-    final screenWidth = view!.physicalSize.width;
+    final screenWidth = MediaQuery.of(this).size.width;
     final config = overrideConfig ?? ResponsiveConfig.instance;
 
     final Map<num, T> deviceBreakpoints = {
@@ -29,7 +26,7 @@ extension ResponsiveOnBreakPoint on BuildContext {
 
     final mergedBreakpoints = {...deviceBreakpoints, ...breakpoints ?? {}};
     // Sort breakpoints in ascending order
-    final sortedBreakpoints = mergedBreakpoints!.keys.toList()..sort();
+    final sortedBreakpoints = mergedBreakpoints.keys.toList()..sort();
 
     // Find the appropriate breakpoint
     num activeBreakpoint = sortedBreakpoints.lastWhere(

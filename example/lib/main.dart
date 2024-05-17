@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework_v2/src/responsive_framework_v2.dart';
 
 void main() {
-  BreakpointConfig<double>(
+  ResponsiveConfig(
     xs: 360,
     sm: 640,
     md: 768,
@@ -11,7 +11,7 @@ void main() {
   );
 
   runApp(
-    const MainApp(),
+    MainApp(),
   );
 }
 
@@ -107,6 +107,7 @@ class MainApp extends StatelessWidget {
                     // responsive is used to display different content based on screen width && using breakpoints config from global instance
                     context.responsive(
                       breakpoints: {
+                        300: const Text("Extra Small"),
                         600: const Text("Small"),
                         900: Text("Medium"),
                         912: Text('912'),

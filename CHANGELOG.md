@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.0.0+3
+* Remove FlutterView().mayOf method to fetch screen height as  it was not changing the ui in mobile view 
+
+
+
 ### 1.0.0+2
 * Example app 
 
