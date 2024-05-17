@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework_v2/src/chore/break_point_provider.dart';
 import 'package:responsive_framework_v2/src/extension/context_extension.dart';
+import 'package:responsive_framework_v2/src/model/break_point.model.dart';
 
-import 'chore/responsive_scale.dart';
-import 'model/scale_in_between.model.dart';
+import 'src/chore/responsive_scale.dart';
+import 'src/model/scale_in_between.model.dart';
 
 void main() {
-  runApp(const MainApp());
+  final globalBreakpointConfig = BreakpointConfig<double>(
+    xs: 360,
+    sm: 640,
+    md: 768,
+    lg: 1024,
+    xl: 1280,
+  );
+
+  runApp(
+    ResponsiveConfigProvider(
+      config: globalBreakpointConfig,
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -87,16 +102,22 @@ class MainApp extends StatelessWidget {
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle, color: Colors.red),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    context.responsive(breakpoints: {
-                      600: const Text("Small"),
-                      900: Text("Medium"),
-                      912: Text('912'),
-                      1200: Text("Large"),
-                      1400: Text("Extra Large"),
-                    }),
+                    context.responsive(
+                      breakpoints: {
+                        600: const Text("Small"),
+                        900: Text("Medium"),
+                        912: Text('912'),
+                        1200: Text("Large"),
+                        1400: Text("Extra Large"),
+                      },
+                      sm: Text('sm'),
+                      // md: Text('md'),
+                      // lg: Text('lg'),
+                      // xl: Text('xl'),
+                    ),
                     context.showOnScreenBreakPoint(
                         breakpoint: 600, widget: Text('showOnScreenWidth 600')),
                   ],

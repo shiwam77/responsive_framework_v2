@@ -1,26 +1,43 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:responsive_framework_v2/src/chore/break_point_provider.dart';
 
 extension ResponsiveOnBreakPoint on BuildContext {
   T responsive<T>({
-    required final Map<int, T> breakpoints,
+    final Map<int, T>? breakpoints,
+    T? xs,
+    T? sm,
+    T? md,
+    T? lg,
+    T? xl,
   }) {
     debugPrint(MediaQuery.of(this).size.width.toString());
 
     FlutterView? view = View.maybeOf(this);
     final screenWidth = view!.physicalSize.width;
+    final provider = ResponsiveConfigProvider.of(this);
+    final config = provider?.config;
 
+    final Map<num, T> deviceBreakpoints = {
+      if (xs != null) config!.xs: xs,
+      if (sm != null) config!.sm: sm,
+      if (md != null) config!.md: md,
+      if (lg != null) config!.lg: lg,
+      if (xl != null) config!.xl: xl,
+    };
+
+    final mergedBreakpoints = {...deviceBreakpoints, ...breakpoints ?? {}};
     // Sort breakpoints in ascending order
-    final sortedBreakpoints = breakpoints.keys.toList()..sort();
+    final sortedBreakpoints = mergedBreakpoints!.keys.toList()..sort();
 
     // Find the appropriate breakpoint
-    int activeBreakpoint = sortedBreakpoints.lastWhere(
+    num activeBreakpoint = sortedBreakpoints.lastWhere(
         (breakpoint) => screenWidth >= breakpoint,
         orElse: () => sortedBreakpoints.first);
 
     // Get the corresponding value for the active breakpoint
-    final breakpointValue = breakpoints[activeBreakpoint];
+    final breakpointValue = mergedBreakpoints[activeBreakpoint];
 
     return breakpointValue!;
   }
